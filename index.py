@@ -1,25 +1,36 @@
-import turtle
+import colorgram
 from turtle import Screen
-import random 
-
+import turtle
+import random
 t = turtle.Turtle()
+t.penup()
+turtle.colormode(255)
 
-turtle.colormode(255) 
-def random_color():
-    r = random.randint(0,255)
-    g = random.randint(0,255)
-    b = random.randint(0,255)
-    color = (r, g, b)
-    return color
-t.speed("fastest")
+colors = colorgram.extract('hirst.jpg', 20)
+rgbcolors = []
+for color in colors:
+    r = color.rgb.r
+    g = color.rgb.g
+    b = color.rgb.b 
+    newcolor = (r,g,b)
+    rgbcolors.append(newcolor)
 
-def spirograph(sizeofgap):
-    for _ in range(int(360/sizeofgap)):
-        t.circle(100)
-        t.color(random_color())
-        t.setheading(t.heading() + sizeofgap)
-        
-        
-spirograph(5)        
+t.setheading(200)
+t.forward(500)
+t.setheading(0)
+
+num_of_dots = 100
+for dot_count in range(1, num_of_dots + 1):
+    t.dot(20,random.choice(rgbcolors))
+    t.forward(50)
+    
+    if dot_count % 10 == 0:
+        t.setheading(90)
+        t.forward(50)
+        t.setheading(180)
+        t.forward(500)
+        t.setheading(0)
+
+
 s = Screen()
 s.exitonclick()

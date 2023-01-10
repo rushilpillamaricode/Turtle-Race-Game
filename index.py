@@ -1,73 +1,36 @@
-from turtle import Turtle,Screen
-import keyboard
+from turtle import Turtle, Screen
+import random
 
-t = Turtle()
 s = Screen()
-t.speed("fastest")
+s.setup(width=750,height=600) 
+user = s.textinput(title="Make your bet",prompt="Choose your turtle: ")
+colors = ["red","orange","yellow","green","blue","purple"]
+turtle_positions = [-70, -40, -10, 20, 50, 80]
+turtles = []
 
-def move_f():
-    t.forward(10)
-
-def move_b():
-    t.backward(10)
-
-def turn_l():
-    t.setheading(t.heading() + 10)
-
-def turn_r():
-    t.setheading(t.heading() - 10)
-
-def clear():
-    t.speed("slowest")
+for _ in range(6):
+    t = Turtle(shape="turtle")
+    t.color(colors[_])
+    t.turtlecolor = colors[_]
     t.penup()
-    t.home()
-    t.pendown()
-    t.speed("fastest")
-    
-def erase():
-    t.clear()
+    t.goto(x=-335,y=turtle_positions[_])
+    turtles.append(t)
 
-s.listen()
-s.onkeypress(key="Up",fun=move_f)
-s.onkeypress(key="Left",fun=turn_l)
-s.onkeypress(key="Right",fun=turn_r)
-s.onkeypress(key="Down",fun=move_b)
-s.onkeypress(key="space",fun=clear)
-s.onkeypress(key="a",fun=erase)
-s.exitonclick()from turtle import Turtle,Screen
-import keyboard
+cond = False
+if user != "" and user in colors:
+    cond = True
 
-t = Turtle()
-s = Screen()
-t.speed("fastest")
+while cond:
+    for turtle in turtles:
+        if turtle.xcor() > 335:
+            turtle.write("I won hurray!!!!")
+            cond = False  
+            break
+        
+        dist = random.randint(1,11)
+        turtle.forward(dist)
 
-def move_f():
-    t.forward(10)
 
-def move_b():
-    t.backward(10)
 
-def turn_l():
-    t.setheading(t.heading() + 10)
 
-def turn_r():
-    t.setheading(t.heading() - 10)
-
-def clear():
-    t.speed("slowest")
-    t.penup()
-    t.home()
-    t.pendown()
-    t.speed("fastest")
-    
-def erase():
-    t.clear()
-
-s.listen()
-s.onkeypress(key="Up",fun=move_f)
-s.onkeypress(key="Left",fun=turn_l)
-s.onkeypress(key="Right",fun=turn_r)
-s.onkeypress(key="Down",fun=move_b)
-s.onkeypress(key="space",fun=clear)
-s.onkeypress(key="a",fun=erase)
 s.exitonclick()

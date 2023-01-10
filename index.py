@@ -1,36 +1,73 @@
-import colorgram
-from turtle import Screen
-import turtle
-import random
-t = turtle.Turtle()
-t.penup()
-turtle.colormode(255)
+from turtle import Turtle,Screen
+import keyboard
 
-colors = colorgram.extract('hirst.jpg', 20)
-rgbcolors = []
-for color in colors:
-    r = color.rgb.r
-    g = color.rgb.g
-    b = color.rgb.b 
-    newcolor = (r,g,b)
-    rgbcolors.append(newcolor)
-
-t.setheading(200)
-t.forward(500)
-t.setheading(0)
-
-num_of_dots = 100
-for dot_count in range(1, num_of_dots + 1):
-    t.dot(20,random.choice(rgbcolors))
-    t.forward(50)
-    
-    if dot_count % 10 == 0:
-        t.setheading(90)
-        t.forward(50)
-        t.setheading(180)
-        t.forward(500)
-        t.setheading(0)
-
-
+t = Turtle()
 s = Screen()
+t.speed("fastest")
+
+def move_f():
+    t.forward(10)
+
+def move_b():
+    t.backward(10)
+
+def turn_l():
+    t.setheading(t.heading() + 10)
+
+def turn_r():
+    t.setheading(t.heading() - 10)
+
+def clear():
+    t.speed("slowest")
+    t.penup()
+    t.home()
+    t.pendown()
+    t.speed("fastest")
+    
+def erase():
+    t.clear()
+
+s.listen()
+s.onkeypress(key="Up",fun=move_f)
+s.onkeypress(key="Left",fun=turn_l)
+s.onkeypress(key="Right",fun=turn_r)
+s.onkeypress(key="Down",fun=move_b)
+s.onkeypress(key="space",fun=clear)
+s.onkeypress(key="a",fun=erase)
+s.exitonclick()from turtle import Turtle,Screen
+import keyboard
+
+t = Turtle()
+s = Screen()
+t.speed("fastest")
+
+def move_f():
+    t.forward(10)
+
+def move_b():
+    t.backward(10)
+
+def turn_l():
+    t.setheading(t.heading() + 10)
+
+def turn_r():
+    t.setheading(t.heading() - 10)
+
+def clear():
+    t.speed("slowest")
+    t.penup()
+    t.home()
+    t.pendown()
+    t.speed("fastest")
+    
+def erase():
+    t.clear()
+
+s.listen()
+s.onkeypress(key="Up",fun=move_f)
+s.onkeypress(key="Left",fun=turn_l)
+s.onkeypress(key="Right",fun=turn_r)
+s.onkeypress(key="Down",fun=move_b)
+s.onkeypress(key="space",fun=clear)
+s.onkeypress(key="a",fun=erase)
 s.exitonclick()
